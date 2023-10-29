@@ -8,7 +8,6 @@ export default function Layout({ children }) {
         <div className={inter.className}>
             <Header />
             <main>{children}</main>
-            2
         </div>
     )
 }

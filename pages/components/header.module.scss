@@ -1,0 +1,31 @@
+.header {
+  background: rgba(73, 103, 39, 0.05);
+  min-height: 100px;
+
+  &__logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 60px;
+    font-weight: 600;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: calc(50% - 22px);
+      left: calc(50% - 22px);
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--on-surface-bg);
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    span {
+      display: block;
+      background: rgba(73, 103, 39, 0.05);
+      position: relative;
+      color: var(--primary);
+    }
+  }
+}

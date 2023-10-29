@@ -1,6 +1,13 @@
 import type { ReactElement, ReactNode } from 'react'
+import type { Metadata } from 'next'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import './globals.scss'
+
+export const metadata: Metadata = {
+  title: 'Настолки',
+}
+
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

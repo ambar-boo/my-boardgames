@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import list from '../config/list.json' assert { type: 'json' };
 import Input from "@/pages/components/ui/input";
-import {debounce} from "@/pages/utils/debounce";
+import {debounce} from "../../utils/debounce";
 import TeseraApi from "@/pages/api/tesera";
 import styles from './list.module.scss'
 

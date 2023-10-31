@@ -4,6 +4,9 @@ import styles from "./input.module.scss";
 type InputTypes = {
     type: string;
     placeholder: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const Input: React.FunctionComponent<InputTypes> = (
     {

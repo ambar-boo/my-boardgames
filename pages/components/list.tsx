@@ -17,7 +17,7 @@ export default function List() {
 
     const debounceSearchByText = debounce(searchByText, 300);
 
-    async function searchByText(event): Promise<void> {
+    async function searchByText(event: React.ChangeEvent<HTMLInputElement>): Promise<void> {
         handleResult(true);
         if(event.target.value) {
             const searchList = await TeseraApi.searchByText(event.target.value);

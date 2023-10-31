@@ -1,10 +1,25 @@
+$colors : (
+  "surface-bg-lightest": #fff,
+  "surface-bg": #fefcf6,
+  "on-surface-bg": #0f1f18,
+  "primary": #496727,
+  "primary-surface": #F5F4EB,
+);
+
+@function HexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
 :root {
   --max-width: 1170px;
   --row-padding: 15px;
-  --surface-bg: #fefcf6;
-  --on-surface-bg: #0f1f18;
-  --primary: #496727;
-  --primary-surface: #F5F4EB;
+
+  @if $colors {
+    @each $key, $value in $colors {
+      --#{$key} : #{$value};
+      --#{$key}_rgb : #{HexToRGB($value)};
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {

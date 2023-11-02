@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AppContext } from "@/pages/context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import styles from './list.module.scss'
-import {IGames} from '../types/gamesType'
 
 export default function List() {
     // const [games, setGames] = useState<IGames[]>([]);

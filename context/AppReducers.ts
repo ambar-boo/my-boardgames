@@ -1,4 +1,4 @@
-import {IGames} from "@/pages/types/gamesType";
+import {IGames} from "@/types/gamesType";
 
 export const gamesReducer = (state:IGames[], action: any) => {
   switch (action.type) {

@@ -1,93 +1,39 @@
 .wrapper {
   max-width: var(--max-width);
-  padding: 40px var(--row-padding);
+  padding: 0 var(--row-padding) 40px var(--row-padding);
   margin: 0 auto;
   width: 100%;
   min-height: 400px;
 }
 
-.search {
+.list {
   position: relative;
 
-  &__games {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    border: 1px solid rgba(var(--primary_rgb), 0.5);
-    border-top: none;
-    border-radius: 3px;
-    z-index: 1;
-    background: var(--surface-bg-lightest);
-    max-height: 300px;
-    overflow: auto;
-    display: none;
+  &__game {
+    display: flex;
+    flex-wrap: wrap;
 
-    &___open {
-      display: block;
+    &_photo {
+      width: 40px;
+      height: 40px;
+      border: 2px solid rgba(var(--primary_rgb), 0.2);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
     }
 
-    &::-webkit-scrollbar {
-      width: 5px;
-      background: rgba(var(--primary_rgb), 0.1);
-      border-radius: 0;
+    &_title {
+      padding-left: 10px;
     }
 
-    &::-webkit-scrollbar-track {
-      background: rgba(var(--primary_rgb), 0.1);
-      border-radius: 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgba(var(--primary_rgb), 0.2);
-      border-radius: 0;
-    }
-
-    &_row {
+    &_info {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
-      margin-top: 10px;
-
-      &:first-child {
-        margin-top: 0;
-      }
-
-      &_photo {
-        width: 40px;
-        height: 40px;
-        border: 2px solid rgba(var(--primary_rgb), 0.2);
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          display: block;
-        }
-      }
-
-      &_title {
-        padding-left: 10px;
-      }
-
-      &_info {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-
-      &_btn {
-        border: none;
-        box-shadow: none;
-        outline: none;
-        font-family: 'Open Sans', sans-serif;
-        color: var(--primary);
-        cursor: pointer;
-        background: url("../../public/plus-menu-icon.svg") center left no-repeat;
-        padding-left: 16px;
-      }
     }
   }
 }

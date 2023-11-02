@@ -52,6 +52,14 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

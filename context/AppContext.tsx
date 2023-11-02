@@ -25,13 +25,13 @@ const AppProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(mainReducer, intialState);
 
   useEffect(() => {
-    if(localStorage?.getItem("localMyGames")) {
-      const games = JSON.parse(localStorage.getItem("localMyGames"))?.myGames.length > 0 ? JSON.parse(localStorage.getItem("localMyGames")).myGames : [];
+    const localMyGames = localStorage?.getItem('localMyGames') || null;
+    if(localMyGames && JSON.parse(localMyGames)?.myGames.length > 0) {
+      const games = JSON.parse(localMyGames).myGames;
       dispatch({
         type: 'INITIAL_GAME',
         games
       })
-      console.log(JSON.parse(localStorage.getItem("localMyGames")));
     }
   }, []);
 

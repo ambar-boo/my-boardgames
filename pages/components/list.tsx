@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AppContext } from "../../context/AppContext";
+import { AppContext } from "@/context/AppContext";
 import styles from './list.module.scss'
 
 export default function List() {
@@ -13,7 +13,8 @@ export default function List() {
                     <div className={styles.list__game} key={game.alias}>
                         <div className={styles.list__game_info}>
                             <div className={styles.list__game_photo}>
-                                <img src={game.photoUrl} alt=""/></div>
+                                <img src={game.photoUrl} alt=""/>
+                            </div>
                             <div className={styles.list__game_title}>{game.title}</div>
                         </div>
                     </div>) :

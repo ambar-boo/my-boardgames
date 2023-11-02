@@ -1,13 +1,13 @@
-import React, { createContext, useContext, useReducer } from 'react';
-import {IGames} from '../types/gamesType'
+import React, { createContext, useEffect, useReducer } from 'react';
+import {IGames} from '@/types/gamesType'
 import { gamesReducer } from './AppReducers';
 
 type InitialStateType = {
   myGames: IGames[];
 }
 
-const intialState = {
-  myGames: [],
+let intialState = {
+  myGames: []
 }
 
 const AppContext = createContext<{
@@ -23,6 +23,21 @@ const mainReducer = ({ myGames }: InitialStateType, action: any) => ({
 });
 const AppProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(mainReducer, intialState);
+
+  useEffect(() => {
+    if(localStorage?.getItem("localMyGames")) {
+      const games = JSON.parse(localStorage.getItem("localMyGames"))?.myGames.length > 0 ? JSON.parse(localStorage.getItem("localMyGames")).myGames : [];
+      dispatch({
+        type: 'INITIAL_GAME',
+        games
+      })
+      console.log(JSON.parse(localStorage.getItem("localMyGames")));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("localMyGames", JSON.stringify(state));
+  }, [state]);
 
   return (
       <AppContext.Provider value={{state, dispatch}}>

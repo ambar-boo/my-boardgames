@@ -3,8 +3,8 @@ import Input from "@/pages/components/ui/input";
 import Button from "@/pages/components/ui/button";
 import {debounce} from "@/utils/debounce";
 import TeseraApi from "@/pages/api/tesera";
-import { AppContext } from "../../context/AppContext";
-import {IGames} from '../../types/gamesType'
+import { AppContext } from "@/context/AppContext";
+import {IGames} from '@/types/gamesType'
 import styles from './search.module.scss'
 
 // interface IGames {
@@ -70,7 +70,7 @@ export default function Search() {
                                 classBtn={styles.search__games_row_btn}
                                 onClick={() => {
                                     dispatch({
-                                        type: 'ADD_PRODUCT',
+                                        type: 'ADD_GAME',
                                         game
                                     })
                                 }}

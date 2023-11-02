@@ -2,15 +2,15 @@ import {IGames} from "@/types/gamesType";
 
 export const gamesReducer = (state:IGames[], action: any) => {
   switch (action.type) {
-    case 'ADD_PRODUCT':
+    case 'INITIAL_GAME':
+      return [
+        ...action.games,
+      ]
+    case 'ADD_GAME':
       return [
         ...state,
         action.game
       ]
-    // case 'DELETE_PRODUCT':
-    //   return [
-    //     ...state.filter(product => product.id !== action.payload.id),
-    //   ]
     default:
       return state;
   }

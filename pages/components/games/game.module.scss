@@ -1,0 +1,20 @@
+.wrapper {
+  max-width: var(--max-width);
+  padding: 0 var(--row-padding) 40px var(--row-padding);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+
+  &__info {
+    &_title {
+
+    }
+
+    &_description {
+
+    }
+  }
+}

@@ -7,14 +7,28 @@ import { AppContext } from "@/context/AppContext";
 import {IGames} from '@/types/gamesType'
 import styles from './search.module.scss'
 
-// interface IGames {
-//     title: string;
-//     alias: string;
-//     photoUrl: string;
-// }
-export default function Search() {
-    // const [games, setGames] = useState<IGames[]>([]);
+const ButtonAddGame = ({game}: {IGames as game}) => {
     const { state, dispatch } = useContext(AppContext);
+    const isGameAdded = state.myGames.find(myGame => myGame.alias === game.alias);
+
+    return (
+        <Button
+            type="button"
+            text={`${!isGameAdded ? 'Добавить игру' : 'Добавлена'}`}
+            classBtn={`${!isGameAdded ? styles.search__games_row_btn : styles.search__games_row_btn___is_added}`}
+            onClick={() => {
+                if (!isGameAdded) {
+                    dispatch({
+                        type: 'ADD_GAME',
+                        game
+                    })
+                }
+            }}
+        />
+    )
+}
+
+export default function Search() {
     const [games, setGames] = useState<IGames[]>([]);
     const [showResult, handleResult] = useState(false);
     const wrapperRef = useRef<HTMLInputElement>(null);
@@ -33,7 +47,6 @@ export default function Search() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [wrapperRef]);
-
 
     async function searchByText(event: React.ChangeEvent<HTMLInputElement>): Promise<void> {
         handleResult(true);
@@ -60,21 +73,11 @@ export default function Search() {
                     {games.length > 0 ? games.map((game) =>
                         <div className={styles.search__games_row} key={game.alias}>
                             <div className={styles.search__games_row_info}>
-                                <div className={styles.search__games_row_photo}>
+                                <div className={`${styles.search__games_row_photo} ${!game.photoUrl ? styles.search__games_row_photo___nophoto : ''}`}>
                                     <img src={game.photoUrl} alt=""/></div>
                                 <div className={styles.search__games_row_title}>{game.title}</div>
                             </div>
-                            <Button
-                                type="button"
-                                text="Добавить игру"
-                                classBtn={styles.search__games_row_btn}
-                                onClick={() => {
-                                    dispatch({
-                                        type: 'ADD_GAME',
-                                        game
-                                    })
-                                }}
-                            />
+                            <ButtonAddGame game={game} />
                         </div>) :
                         <div>Игр не найдено</div>
                     }

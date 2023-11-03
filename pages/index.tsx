@@ -1,10 +1,10 @@
 import type { ReactElement } from 'react'
 import Layout from './components/layout'
-import Search from './components/search'
-import List from './components/list'
+import Search from './components/search/search'
+import List from './components/games/list'
 import type { NextPageWithLayout } from './_app'
 
-const Page: NextPageWithLayout = () => {
+const Index: NextPageWithLayout = () => {
   return (
       <>
           <Search />
@@ -13,7 +13,7 @@ const Page: NextPageWithLayout = () => {
   )
 }
 
-Page.getLayout = function getLayout(page: ReactElement) {
+Index.getLayout = function getLayout(page: ReactElement) {
   return (
       <Layout>
         {page}
@@ -21,4 +21,4 @@ Page.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-export default Page
+export default Index

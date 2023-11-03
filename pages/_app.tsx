@@ -1,8 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
-import type { Metadata } from 'next'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import { AppProvider } from '../context/AppContext'
+import { AppProvider } from '@/context/AppContext'
 import './globals.scss'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {

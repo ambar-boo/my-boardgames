@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AppContext } from "@/context/AppContext";
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
 import styles from './game.module.scss';
 import {useRouter} from "next/router";
 import TeseraApi from "@/pages/api/tesera";
+import Loader from "@/pages/components/ui/loader";
 import {gamesCard} from "@/types/gamesType";
 
 export default function GameCard() {
@@ -28,11 +27,18 @@ export default function GameCard() {
         <div className={styles.wrapper}>
             <div className={styles.card}>
                 <div className={styles.card__info}>
-                    <h1 className={styles.card__info_title}>
-                        {gameInfo?.game.title}
-                    </h1>
-                    <div className={styles.card__info_description}  dangerouslySetInnerHTML={{ __html:  typeof gameInfo?.game.description === 'string' ?
-                            gameInfo?.game.description : '' }} />
+                    {
+                        gameInfo?.game ?
+                            <>
+                                <h1 className={styles.card__info_title}>
+                                    {gameInfo?.game.title}
+                                </h1>
+                                <div className={styles.card__info_description}  dangerouslySetInnerHTML={{ __html:  typeof gameInfo?.game.description === 'string' ?
+                                        gameInfo?.game.description : '' }} />
+                            </> : <div>
+                            <Loader />
+                        </div>
+                    }
                 </div>
             </div>
         </div>

@@ -7,7 +7,12 @@ import { AppContext } from "@/context/AppContext";
 import {IGames} from '@/types/gamesType'
 import styles from './search.module.scss'
 
-const ButtonAddGame = ({game}: {IGames as game}) => {
+type ButtonAddGameProps = {
+    game: IGames
+}
+
+const ButtonAddGame = ({game}: ButtonAddGameProps) => {
+    console.log(game);
     const { state, dispatch } = useContext(AppContext);
     const isGameAdded = state.myGames.find(myGame => myGame.alias === game.alias);
 

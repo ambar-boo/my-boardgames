@@ -1,0 +1,22 @@
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+  &__title {
+    display: block;
+  }
+
+  &__text {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: rgba(var(--primary_rgb), 0.8);
+  }
+
+  &:hover {
+    .tooltip__text {
+      display: block;
+    }
+  }
+}

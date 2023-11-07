@@ -20,6 +20,12 @@
 
     &_row {
       display: block;
+
+      &:hover {
+        .list__game_action {
+          opacity: 1;
+        }
+      }
     }
 
     &_photo {
@@ -55,10 +61,9 @@
       margin-top: 10px;
     }
 
-    &_tooltip {
-      position: absolute;
-      top: 10px;
-      right: 10px;
+    &_action {
+      opacity: 0;
+      transition: opacity 0.2s linear 0s;
     }
   }
 }

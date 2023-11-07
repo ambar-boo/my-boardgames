@@ -1,19 +1,18 @@
 import React from "react";
 import styles from './tooltip.module.scss';
 
-type TooltipTypes = {
+type TooltipTypesProps = {
     title: string;
     text: string;
     classBtn?: string;
 }
-const Tooltip: React.FunctionComponent<TooltipTypes> = (
-    {
+const Tooltip = ({
         title,
         text,
         classBtn,
-    }): JSX.Element =>  {
+    } : TooltipTypesProps) =>  {
     return (
-        <div className={`${styles.tooltip} ${classBtn}`}>
+        <div className={`${styles.tooltip} ${classBtn ? styles[classBtn] : ''}`}>
             <div className={styles.tooltip__title}>
                 {title}
             </div>

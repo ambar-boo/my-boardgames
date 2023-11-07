@@ -15,11 +15,20 @@ export default function List() {
                         <Link className={styles.list__game_row} href={`/games/${encodeURIComponent(game.alias)}`}>
                             <div className={`${styles.list__game_photo} ${!game.photoUrl ? styles.list__game_photo___nophoto : ''}`}>
                                 <img src={game.photoUrl} alt=""/>
-                                <Tooltip
-                                    title="&#215;"
-                                    text="Удалить из коллекции"
-                                    classBtn={styles.list__game_tooltip}
-                                />
+                                <div className={styles.list__game_action}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch({
+                                            type: 'REMOVE_GAME',
+                                            alias: game.alias
+                                        })
+                                    }}>
+                                    <Tooltip
+                                        title="&#215;"
+                                        text="Удалить из коллекции"
+                                        classBtn="list_game"
+                                    />
+                                </div>
                             </div>
                             <div className={styles.list__game_info}>
                                 <div className={styles.list__game_title}>{game.title}</div>

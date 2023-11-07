@@ -9,14 +9,45 @@
   &__text {
     display: none;
     position: absolute;
-    top: 0;
-    left: 100%;
-    background: rgba(var(--primary_rgb), 0.8);
+    top: calc(100% + 2px);
+    left: 50%;
+    background: rgba(var(--on-surface-bg_rgb), 0.7);
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
+    padding: 2px 6px;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 300px;
+    z-index: 10;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      width: 0;
+      padding: 0;
+      border: 6px solid transparent;
+      transform: translateX(-50%);
+      border-bottom-color: rgba(var(--on-surface-bg_rgb), 0.7);
+    }
   }
 
   &:hover {
     .tooltip__text {
       display: block;
+    }
+  }
+
+  &.list_game {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    .tooltip__title {
+      font-size: 20px;
+      line-height: 20px;
     }
   }
 }

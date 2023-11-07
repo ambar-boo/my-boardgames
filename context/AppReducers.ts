@@ -11,6 +11,8 @@ export const gamesReducer = (state:IGames[], action: any) => {
         ...state,
         action.game
       ]
+    case 'REMOVE_GAME':
+      return state.filter(game => game.alias !== action.alias)
     default:
       return state;
   }

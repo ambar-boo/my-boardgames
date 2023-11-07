@@ -33,7 +33,7 @@ export default function GameCard() {
                                 <h1 className={styles.card__info_title}>
                                     {gameInfo?.game.title}
                                 </h1>
-                                <div className={styles.card__info_description}  dangerouslySetInnerHTML={{ __html:  typeof gameInfo?.game.description === 'string' ?
+                                <div className={styles.card__info_description} dangerouslySetInnerHTML={{ __html:  typeof gameInfo?.game.description === 'string' ?
                                         gameInfo?.game.description : '' }} />
                             </> : <div>
                             <Loader />

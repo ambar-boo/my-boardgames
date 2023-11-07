@@ -12,7 +12,6 @@ type ButtonAddGameProps = {
 }
 
 const ButtonAddGame = ({game}: ButtonAddGameProps) => {
-    console.log(game);
     const { state, dispatch } = useContext(AppContext);
     const isGameAdded = state.myGames.find(myGame => myGame.alias === game.alias);
 

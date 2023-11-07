@@ -4,7 +4,6 @@ export type IGames = {
     photoUrl?: string;
 }
 
-
 type GameInfo = {
     title: string;
     alias: string;
@@ -12,6 +11,12 @@ type GameInfo = {
     description?: string | TrustedHTML | undefined;
 }
 
+export type GalleryItem = {
+    photoUrl: string,
+    title?: string
+}
+
 export type gamesCard = {
-    game: GameInfo
+    game: GameInfo,
+    gallery?: GalleryItem[]
 }

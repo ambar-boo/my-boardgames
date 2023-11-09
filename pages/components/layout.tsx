@@ -10,6 +10,7 @@ export default function Layout({ children }: MyComponentProps) {
         <div className={inter.className}>
             <Header />
             <main className="main-content">{children}</main>
+            <div id="modal-root"></div>
         </div>
     )
 }

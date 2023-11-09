@@ -3,7 +3,7 @@ import styles from './game.module.scss';
 import {useRouter} from "next/router";
 import TeseraApi from "@/pages/api/tesera";
 import Loader from "@/pages/components/ui/loader";
-import {gamesCard, GalleryItem} from "@/types/gamesType";
+import {gamesCard} from "@/types/gamesType";
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -56,6 +56,8 @@ export default function GameCard() {
                                                 ref={swiperElRef}
                                                 slides-per-view="1"
                                                 navigation={true}
+                                                navigation-prev-el="#my-prev-button"
+                                                navigation-next-el="#my-next-button"
                                             >
                                                 {
                                                     gameInfo.gallery.map((item, index) => {
@@ -68,6 +70,8 @@ export default function GameCard() {
                                                     })
                                                 }
                                             </swiper-container>
+                                            <button type="button" id="my-prev-button" className={styles.card__slider_prev} />
+                                            <button type="button" id="my-next-button" className={styles.card__slider_next} />
                                         </div> :
                                         <img src={gameInfo.game.photoUrl} alt=""/>
                                     }

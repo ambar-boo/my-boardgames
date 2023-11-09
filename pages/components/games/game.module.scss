@@ -33,6 +33,7 @@
 
   &__slider {
     width: 100%;
+    position: relative;
 
     swiper-container {
       display: flex;
@@ -60,6 +61,44 @@
     &_title {
       margin-top: 10px;
       text-align: center;
+    }
+
+    &_next, &_prev {
+      position: absolute;
+      top: calc(50% - 20px);
+      left: 0;
+      width: 30px;
+      height: 40px;
+      background: rgba(var(--primary_rgb), 0.2);
+      z-index: 5;
+      cursor: pointer;
+      transition: background-color 0.2s linear 0s;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: calc(50% - 6px);
+        left: calc(50% - 3px);
+        width: 10px;
+        height: 10px;
+        transform: rotate(135deg);
+        border-bottom: 2px solid var(--primary);
+        border-right: 2px solid var(--primary);
+      }
+
+      &:hover {
+        background: rgba(var(--primary_rgb), 0.3);
+      }
+    }
+
+    &_next {
+      right: 0;
+      left: auto;
+
+      &:before {
+        left: calc(50% - 9px);
+        transform: rotate(-45deg);
+      }
     }
   }
 

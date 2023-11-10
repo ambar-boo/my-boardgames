@@ -12,8 +12,8 @@ const Tooltip = ({
         classBtn,
     } : TooltipTypesProps) =>  {
     return (
-        <div className={`${styles.tooltip} ${classBtn ? styles[classBtn] : ''}`}>
-            <div className={styles.tooltip__title}>
+        <div className={`tooltip ${styles.tooltip} ${classBtn ? styles[classBtn] : ''}`}>
+            <div className={`tooltip-title ${styles.tooltip__title}`}>
                 {title}
             </div>
             <div className={styles.tooltip__text}>

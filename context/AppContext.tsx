@@ -1,9 +1,9 @@
 import React, { createContext, useEffect, useReducer } from 'react';
-import {IGames} from '@/types/gamesType'
+import {GameInfo} from '@/types/gamesType'
 import { gamesReducer } from './AppReducers';
 
 type InitialStateType = {
-  myGames: IGames[];
+  myGames: GameInfo[];
 }
 
 let intialState = {

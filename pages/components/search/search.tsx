@@ -68,6 +68,9 @@ export default function Search() {
 
     return (
         <div className={styles.wrapper}>
+            <div className={styles.main_page__image}>
+                <img src="../../../main-page-fon.jpg" alt=""/>
+            </div>
             <div ref={wrapperRef} className={styles.search}>
                 <Input
                     type="text"

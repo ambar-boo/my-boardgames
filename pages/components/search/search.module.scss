@@ -5,6 +5,31 @@
   width: 100%;
 }
 
+.main_page__image {
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--on-surface-bg_rgb), 0.2);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
 .search {
   position: relative;
 

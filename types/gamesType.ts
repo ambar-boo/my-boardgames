@@ -4,7 +4,7 @@ export type IGames = {
     photoUrl?: string;
 }
 
-type GameInfo = {
+export type GameInfo = {
     title: string;
     alias: string;
     photoUrl?: string;

@@ -14,7 +14,7 @@ export default function List() {
     return (
         <div className={styles.wrapper}>
             <div className={styles.list}>
-                {state.myGames.length > 0 ? state.myGames.map((game) => <MemoListItem key={game.alias} game={game} />) :
+                {state.myGames?.length > 0 ? state.myGames.map((game) => <MemoListItem key={game.alias} game={game} />) :
                     <div>Добавьте свои игры, используя поиск</div>
                 }
             </div>

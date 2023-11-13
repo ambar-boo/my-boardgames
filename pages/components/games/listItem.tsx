@@ -7,19 +7,23 @@ import Button from "@/pages/components/ui/button";
 import GameModal from "@/pages/components/games/gameModal";
 import {GameInfo} from '@/types/gamesType'
 
-interface modalProps {
+type GameProps = {
+    game: GameInfo,
+}
+
+interface stateModalProps {
     id: string | null,
     isOpen: boolean
 }
 
-const MemoListItem = memo<modalProps>(({game}) => {
+const MemoListItem = memo(({game} :GameProps) => {
     const { state, dispatch } = useContext(AppContext);
-    const [modal, setShowModal] = useState<modalProps>({
+    const [modal, setShowModal] = useState<stateModalProps>({
         id: null,
         isOpen: false
     });
 
-    return (
+    return game?.alias && (
         <div className={styles.list__game}>
             <Link className={styles.list__game_row} href={`/games/${encodeURIComponent(game.alias)}`}>
                 <div className={`${styles.list__game_photo} ${!game.photoUrl ? styles.list__game_photo___nophoto : ''}`}>

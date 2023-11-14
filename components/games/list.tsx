@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from "@/context/AppContext";
 import styles from './list.module.scss';
-import MemoListItem from "@/pages/components/games/listItem";
+import MemoListItem from "../games/listItem";
 import {GameInfo} from '@/types/gamesType'
 
 type ListProps = {

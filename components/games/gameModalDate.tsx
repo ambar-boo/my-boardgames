@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IGames} from "@/types/gamesType";
-import InputFields from "@/pages/components/form/formFields/inputField";
-import DateField from "@/pages/components/form/formFields/dateField";
+import InputFields from "../form/formFields/inputField";
+import DateField from "../form/formFields/dateField";
 
 export default function GameModalDate({control} : any) {
 

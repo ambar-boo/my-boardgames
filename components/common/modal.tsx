@@ -3,7 +3,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import { createPortal } from "react-dom";
 import styles from './modal.module.scss';
-import Button from "@/pages/components/ui/button";
+import Button from "../ui/button";
 
 type ModalTypes = {
     children: React.ReactNode;

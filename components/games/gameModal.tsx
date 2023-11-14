@@ -1,9 +1,11 @@
+"use client";
+
 import React, {useState, useEffect, useRef, SetStateAction, BaseSyntheticEvent} from 'react';
-import Modal from "@/pages/components/common/modal";
+import Modal from "../common/modal";
 import {IGames} from "@/types/gamesType";
 import { useForm, FormProvider } from 'react-hook-form';
-import GameModalDate from "@/pages/components/games/gameModalDate";
-import Button from "@/pages/components/ui/button";
+import GameModalDate from "../games/gameModalDate";
+import Button from "../ui/button";
 
 type GameModalProps = {
     game: IGames,

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './game.module.scss';
 import {useRouter} from "next/router";
-import TeseraApi from "@/pages/api/tesera";
-import Loader from "@/pages/components/ui/loader";
+import TeseraApi from "../../api/tesera";
+import Loader from "../ui/loader";
 import {gamesCard} from "@/types/gamesType";
 import { register } from 'swiper/element/bundle';
 

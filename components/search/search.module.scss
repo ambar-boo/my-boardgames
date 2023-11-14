@@ -92,7 +92,7 @@
         }
 
         &___nophoto {
-          background: url("../../../public/meeple-stub-icon.svg") center center no-repeat;
+          background: url("../../public/meeple-stub-icon.svg") center center no-repeat;
           background-size: contain;
 
           img {
@@ -113,7 +113,7 @@
 
       &_btn {
         color: var(--primary);
-        background: url("../../../public/plus-menu-icon.svg") center left no-repeat;
+        background: url("../../public/plus-menu-icon.svg") center left no-repeat;
         padding-left: 16px;
 
         &___is_added {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import Input from "@/pages/components/ui/input";
-import Button from "@/pages/components/ui/button";
+import Input from "../ui/input";
+import Button from "../ui/button";
 import {debounce} from "@/utils/debounce";
-import TeseraApi from "@/pages/api/tesera";
+import TeseraApi from "../../api/tesera";
 import { AppContext } from "@/context/AppContext";
 import {IGames} from '@/types/gamesType'
 import styles from './search.module.scss'

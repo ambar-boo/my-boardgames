@@ -2,9 +2,9 @@ import React, { useState, useContext, memo } from 'react';
 import { AppContext } from "@/context/AppContext";
 import Link from 'next/link';
 import styles from './list.module.scss';
-import Tooltip from "@/pages/components/ui/tooltip";
-import Button from "@/pages/components/ui/button";
-import GameModal from "@/pages/components/games/gameModal";
+import Tooltip from "../ui/tooltip";
+import Button from "../ui/button";
+import GameModal from "../games/gameModal";
 import {GameInfo} from '@/types/gamesType'
 
 type GameProps = {

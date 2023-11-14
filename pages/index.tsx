@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
-import Layout from './components/layout'
-import Search from './components/search/search'
-import List from './components/games/list'
+import Layout from '../components/layout'
+import Search from '../components/search/search'
+import List from '../components/games/list'
 import type { NextPageWithLayout } from './_app'
 
 const Index: NextPageWithLayout = () => {

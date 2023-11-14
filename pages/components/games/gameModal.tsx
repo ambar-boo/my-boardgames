@@ -1,12 +1,25 @@
-import React, {useState, useEffect, useRef, SetStateAction} from 'react';
+import React, {useState, useEffect, useRef, SetStateAction, BaseSyntheticEvent} from 'react';
 import Modal from "@/pages/components/common/modal";
 import {IGames} from "@/types/gamesType";
+import { useForm, FormProvider } from 'react-hook-form';
+import GameModalDate from "@/pages/components/games/gameModalDate";
+import Button from "@/pages/components/ui/button";
 
 type GameModalProps = {
     game: IGames,
     setShowModal: SetStateAction<any>,
 }
 export default function GameModal({game, setShowModal} :GameModalProps) {
+    const { register, control, handleSubmit, formState: { errors } } = useForm();
+    const methods = useForm();
+
+    console.log('errors', errors);
+
+    const onSubmit = (data :any, e: BaseSyntheticEvent<object, any, any> | undefined) => console.log(data, e);
+    const onError = (errors :any, e: BaseSyntheticEvent<object, any, any> | undefined) => {
+        // setErrorsValidation(errors);
+        console.log('errors', errors, e);
+    }
 
     return (
         <Modal title={game?.title ? `Добавьте даты, когда играли в ${game.title}` : ''}
@@ -14,7 +27,16 @@ export default function GameModal({game, setShowModal} :GameModalProps) {
                    id: null,
                    isOpen: false
                })}>
-            In progress
+            <FormProvider {...errors} {...methods}>
+                <form onSubmit={handleSubmit(onSubmit, onError)}>
+                    <GameModalDate
+                        control={control} />
+                    <Button
+                        type="submit"
+                        text="Отправить"
+                    />
+                </form>
+            </FormProvider>
         </Modal>
     )
 }

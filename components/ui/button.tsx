@@ -14,7 +14,7 @@ const Button: React.FunctionComponent<ButtonTypes> = (
         onClick,
     }): JSX.Element =>  {
     return (
-        <button type={type} className={classBtn} onClick={onClick}>
+        <button type={type} className={`${classBtn}`} onClick={onClick}>
             {text}
         </button>
     )

@@ -1,7 +1,8 @@
 import React from 'react';
-import {Controller, useFormContext} from "react-hook-form";
+import {Controller} from "react-hook-form";
 
 type InputFieldsTypes = {
+    type: string;
     placeholder: string;
     name: string;
     validation?: any,
@@ -9,32 +10,29 @@ type InputFieldsTypes = {
 }
 const InputFields: React.FunctionComponent<InputFieldsTypes> = (
     {
+        type,
         placeholder,
         name,
         validation,
         control
     }): JSX.Element =>  {
-    const errors :any = useFormContext();
-
-    if (validation) {
-        console.log('input', name, errors);
-    }
 
     return (
         <Controller
             control={control}
             name={name}
             rules={validation}
-            render={({ field }) => {
+            render={({ field, fieldState }) => {
                 return (
                     <>
                         <input
-                            type="text"
+                            type={type}
                             placeholder={placeholder}
                             value={field.value}
+                            className={fieldState.error ? 'error' : ''}
                             onChange={(value) => field.onChange(value)}
                         />
-                        {errors[name] ? <p>{errors[name].message}</p> : ''}
+                        {fieldState.error ? <p className="error-message">{fieldState.error?.message}</p> : ''}
                     </>
                 )
             }}

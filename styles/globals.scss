@@ -3,7 +3,10 @@ $colors : (
   "surface-bg": #fefcf6,
   "on-surface-bg": #0f1f18,
   "primary": #496727,
+  "primary-hover": #517527,
+  "primary-active": #3f5724,
   "primary-surface": #F5F4EB,
+  "error": #ff0044,
 );
 
 @function HexToRGB($hex) {
@@ -58,6 +61,44 @@ button {
   outline: none;
   font-family: 'Open Sans', sans-serif;
   cursor: pointer;
+
+  &.btn_primary {
+    border-radius: 3px;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: var(--primary-surface);
+    padding: 7px 15px;
+
+    &:not(:disabled):hover {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
+      box-shadow: 0 0 0 2px rgba(var(--primary_rgb), 0.1);
+    }
+
+    &:not(:disabled):active {
+      background-color: var(--primary-active);
+      border-color: var(--primary-active);
+      box-shadow: none;
+    }
+  }
+
+  &.btn_secondary {
+    border-radius: 3px;
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    padding: 7px 15px;
+
+    &:not(:disabled):hover {
+      border-color: var(--primary-hover);
+      box-shadow: 0 0 0 2px rgba(var(--primary_rgb), 0.1);
+    }
+
+    &:not(:disabled):active {
+      border-color: var(--primary-active);
+      box-shadow: none;
+    }
+  }
 }
 
 .main-content {
@@ -105,8 +146,19 @@ input {
     color: rgba(var(--on-surface-bg_rgb), 0.6);
   }
 
-  &:focus {
+  &.error {
+    border-color: var(--error);
+  }
+
+  &:not(:disabled):focus {
     box-shadow: 0 0 0 4px rgba(var(--primary_rgb), 0.1);
     border-color: rgba(var(--primary_rgb), 0.5);
   }
+}
+
+.error-message {
+  margin: 4px 0 0 0;
+  color: var(--error);
+  font-size: 12px;
+  line-height: 15px;
 }

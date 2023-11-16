@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Controller, useFormContext} from 'react-hook-form';
+import React from 'react';
+import {Controller} from 'react-hook-form';
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ru from 'date-fns/locale/ru';
@@ -19,27 +19,25 @@ const DateField: React.FunctionComponent<DateFieldTypes> = (
         validation,
         control
     }): JSX.Element =>  {
-    const errors :any = useFormContext();
-
-    console.log('dateField', name, errors);
-
 
     return (
         <Controller
             control={control}
             name={name}
             rules={validation}
-            render={({ field }) => {
+            render={({ field, fieldState }) => {
                 return (
                     <>
                         <DatePicker
                             dateFormat="dd.MM.yyyy"
                             locale="ru"
+                            wrapperClassName="datePicker"
                             placeholderText={placeholder}
+                            className={fieldState.error ? 'error' : ''}
                             onChange={(date) => field.onChange(date)}
                             selected={field.value}
                         />
-                        {errors[name] ? <p>{errors[name].message}</p> : ''}
+                        {fieldState.error ? <p className="error-message">{fieldState.error?.message}</p> : ''}
                     </>
                 )
             }}

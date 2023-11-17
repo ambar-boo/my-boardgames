@@ -2,14 +2,14 @@
 
 import React, {useState, useEffect, useRef, SetStateAction, BaseSyntheticEvent} from 'react';
 import Modal from "../common/modal";
-import {IGames} from "@/types/gamesType";
+import {GameInfo} from "@/types/gamesType";
 import { useForm, FormProvider, useFieldArray } from 'react-hook-form';
 import GameModalDate from "../games/gameModalDate";
 import Button from "../ui/button";
 import styles from './gameModal.module.scss';
 
 type GameModalProps = {
-    game: IGames,
+    game: GameInfo,
     setShowModal: SetStateAction<any>,
 }
 export default function GameModal({game, setShowModal} :GameModalProps) {

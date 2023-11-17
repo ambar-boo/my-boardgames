@@ -1,6 +1,6 @@
-import {IGames} from "@/types/gamesType";
+import {GameInfo} from "@/types/gamesType";
 
-export const gamesReducer = (state:IGames[], action: any) => {
+export const gamesReducer = (state:GameInfo[], action: any) => {
   switch (action.type) {
     case 'INITIAL_GAME':
       return [

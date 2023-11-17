@@ -1,15 +1,14 @@
-export type IGames = {
-    title: string;
-    alias: string;
-    photoUrl?: string;
-}
-
 export type GameInfo = {
     title: string;
     alias: string;
     photoUrl?: string;
     description?: string | TrustedHTML | undefined;
 }
+
+export type GameProps = {
+    game: GameInfo,
+}
+
 
 export type GalleryItem = {
     photoUrl: string,

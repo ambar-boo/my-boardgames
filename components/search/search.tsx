@@ -4,16 +4,12 @@ import Button from "../ui/button";
 import {debounce} from "@/utils/debounce";
 import TeseraApi from "../../api/tesera";
 import { AppContext } from "@/context/AppContext";
-import {IGames} from '@/types/gamesType'
+import {GameProps, GameInfo} from '@/types/gamesType'
 import styles from './search.module.scss'
 
-type ButtonAddGameProps = {
-    game: IGames
-}
-
-const ButtonAddGame = ({game}: ButtonAddGameProps) => {
-    const { state, dispatch } = useContext(AppContext);
-    const isGameAdded = state.myGames.find(myGame => myGame.alias === game.alias);
+const ButtonAddGame = ({game}: GameProps) => {
+    const { myGames, dispatch } = useContext(AppContext);
+    const isGameAdded = myGames.find(myGame => myGame.alias === game.alias);
 
     return (
         <Button
@@ -33,7 +29,7 @@ const ButtonAddGame = ({game}: ButtonAddGameProps) => {
 }
 
 export default function Search() {
-    const [games, setGames] = useState<IGames[]>([]);
+    const [games, setGames] = useState<GameInfo[]>([]);
     const [showResult, handleResult] = useState(false);
     const wrapperRef = useRef<HTMLInputElement>(null);
 

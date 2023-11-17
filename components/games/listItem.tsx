@@ -5,11 +5,7 @@ import styles from './list.module.scss';
 import Tooltip from "../ui/tooltip";
 import Button from "../ui/button";
 import GameModal from "../games/gameModal";
-import {GameInfo} from '@/types/gamesType'
-
-type GameProps = {
-    game: GameInfo,
-}
+import {GameProps} from '@/types/gamesType';
 
 interface stateModalProps {
     id: string | null,
@@ -17,7 +13,7 @@ interface stateModalProps {
 }
 
 const MemoListItem = memo(({game} :GameProps) => {
-    const { state, dispatch } = useContext(AppContext);
+    const { myGames, dispatch } = useContext(AppContext);
     const [modal, setShowModal] = useState<stateModalProps>({
         id: null,
         isOpen: false

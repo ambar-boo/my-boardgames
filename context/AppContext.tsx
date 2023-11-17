@@ -2,32 +2,24 @@ import React, { createContext, useEffect, useReducer } from 'react';
 import {GameInfo} from '@/types/gamesType'
 import { gamesReducer } from './AppReducers';
 
-type InitialStateType = {
-  myGames: GameInfo[];
-}
-
-let intialState = {
-  myGames: []
-}
+let intialState :GameInfo[] = [];
 
 const AppContext = createContext<{
-  state: InitialStateType;
+  myGames: GameInfo[];
   dispatch: React.Dispatch<any>;
 }>({
-  state: intialState,
+  myGames: intialState,
   dispatch: () => null
 });
 
-const mainReducer = ({ myGames }: InitialStateType, action: any) => ({
-  myGames: gamesReducer(myGames, action),
-});
+const mainReducer = (myGames:GameInfo[], action: any) => gamesReducer(myGames, action);
 const AppProvider = ({ children }: any) => {
-  const [state, dispatch] = useReducer(mainReducer, intialState);
+  const [myGames, dispatch] = useReducer(mainReducer, intialState);
 
   useEffect(() => {
     const localMyGames = localStorage?.getItem('localMyGames') || null;
-    if(localMyGames && JSON.parse(localMyGames)?.myGames.length > 0) {
-      const games = JSON.parse(localMyGames).myGames;
+    if(localMyGames && JSON.parse(localMyGames)?.length > 0) {
+      const games = JSON.parse(localMyGames);
       dispatch({
         type: 'INITIAL_GAME',
         games
@@ -36,11 +28,11 @@ const AppProvider = ({ children }: any) => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("localMyGames", JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem("localMyGames", JSON.stringify(myGames));
+  }, [myGames]);
 
   return (
-      <AppContext.Provider value={{state, dispatch}}>
+      <AppContext.Provider value={{myGames, dispatch}}>
         {children}
       </AppContext.Provider>
   )

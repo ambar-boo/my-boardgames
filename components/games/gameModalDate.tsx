@@ -3,6 +3,7 @@ import DateField from "../form/formFields/dateField";
 import styles from './gameModal.module.scss';
 import Button from "@/components/ui/button";
 import React from "react";
+import showNotification from "@/components/notification/notification";
 
 type dateFieldsType = [
     play_game_date: string,
@@ -14,7 +15,7 @@ export default function GameModalDate({control, fields, append, remove} : any) {
     return (
         <>
             {fields.map((item: dateFieldsType, index: number) => (
-                <div key={index} className={styles.row}>
+                <div key={index} className={`${styles.row} ${fields.length > 1 ? styles.row_many : ''}`}>
                     <div className={styles.col}>
                         <DateField
                             name={`dates.${index}.play_game_date`}
@@ -42,10 +43,14 @@ export default function GameModalDate({control, fields, append, remove} : any) {
                             }}
                         />
                     </div>
-                    <button type="button" onClick={() => {
-                        remove(index);
-                    }}
-                    >Удалить</button>
+                    {fields.length > 1 &&
+                        <Button
+                            type="button"
+                            classBtn={styles.row_remove}
+                            onClick={() => remove(index)}
+                            text="&#215;"
+                        />
+                    }
                 </div>
             ))}
             <div className={styles.btn_add}>
@@ -53,6 +58,7 @@ export default function GameModalDate({control, fields, append, remove} : any) {
                     type="button"
                     classBtn="btn_secondary"
                     onClick={() => {
+                        showNotification({type: 'success', message: 'Lorem ipsum dolor sit amet'})
                         append({ play_game_date: "", play_game_count: "" });
                     }}
                     text="Добавить дату"

@@ -3,7 +3,6 @@ import DateField from "../form/formFields/dateField";
 import styles from './gameModal.module.scss';
 import Button from "@/components/ui/button";
 import React from "react";
-import showNotification from "@/components/notification/notification";
 
 type dateFieldsType = [
     play_game_date: string,
@@ -58,7 +57,6 @@ export default function GameModalDate({control, fields, append, remove} : any) {
                     type="button"
                     classBtn="btn_secondary"
                     onClick={() => {
-                        showNotification({type: 'success', message: 'Lorem ipsum dolor sit amet'})
                         append({ play_game_date: "", play_game_count: "" });
                     }}
                     text="Добавить дату"

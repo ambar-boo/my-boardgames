@@ -1,21 +1,27 @@
 "use client";
 
-import React, {useState, useEffect, useRef, SetStateAction, BaseSyntheticEvent} from 'react';
+import React, {SetStateAction, BaseSyntheticEvent, useContext} from 'react';
 import Modal from "../common/modal";
-import {GameInfo} from "@/types/gamesType";
-import { useForm, FormProvider, useFieldArray } from 'react-hook-form';
+import {GameInfo, GalleryStatistics} from "@/types/gamesType";
+import { useForm, FormProvider, useFieldArray, SubmitHandler } from 'react-hook-form';
 import GameModalDate from "../games/gameModalDate";
 import Button from "../ui/button";
-import styles from './gameModal.module.scss';
+import {AppContext} from "@/context/AppContext";
+import showNotification from "@/components/notification/notification";
 
 type GameModalProps = {
     game: GameInfo,
     setShowModal: SetStateAction<any>,
 }
+
+type GameStatistics = {
+    dates: GalleryStatistics[],
+}
 export default function GameModal({game, setShowModal} :GameModalProps) {
-    const { control, handleSubmit } = useForm({
+    const { myGames, dispatch } = useContext(AppContext);
+    const { control, handleSubmit, register } = useForm<GameStatistics>({
         defaultValues: {
-            dates: [{ play_game_date: "", play_game_count: "" }]
+            dates: game.statistics || [{ play_game_date: new Date(), play_game_count: null }]
         },
     });
     const { fields, append, remove } = useFieldArray({
@@ -24,7 +30,29 @@ export default function GameModal({game, setShowModal} :GameModalProps) {
     });
 
     const methods = useForm();
-    const onSubmit = (data :any, e: BaseSyntheticEvent<object, any, any> | undefined) => console.log(data, e);
+    const onSubmit: SubmitHandler<GameStatistics> = (data, e: BaseSyntheticEvent<object, any, any> | undefined) => {
+        console.log(data);
+
+        console.log(typeof data.dates[0].play_game_date);
+        if (data.dates.length > 0) {
+            dispatch({
+                type: 'ADD_STATISTICS_GAME',
+                info: {
+                    alias: game.alias,
+                    statistics: data
+                }
+            });
+            setShowModal({
+                id: null,
+                isOpen: false
+            });
+            showNotification({
+                type: 'success',
+                message: 'Статистика успешно добавлена'
+            });
+        }
+
+    }
     const onError = (errors :any, e: BaseSyntheticEvent<object, any, any> | undefined) => {
         // setErrorsValidation(errors);
         console.log('errors', errors, e);

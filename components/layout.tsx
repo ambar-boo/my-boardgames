@@ -11,6 +11,7 @@ export default function Layout({ children }: MyComponentProps) {
             <Header />
             <main className="main-content">{children}</main>
             <div id="modal-root"></div>
+            <div id="notifications"></div>
         </div>
     )
 }

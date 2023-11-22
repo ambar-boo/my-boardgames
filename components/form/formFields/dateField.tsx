@@ -26,6 +26,7 @@ const DateField: React.FunctionComponent<DateFieldTypes> = (
             name={name}
             rules={validation}
             render={({ field, fieldState }) => {
+                // console.log(field.value);
                 return (
                     <>
                         <DatePicker
@@ -34,8 +35,11 @@ const DateField: React.FunctionComponent<DateFieldTypes> = (
                             wrapperClassName="datePicker"
                             placeholderText={placeholder}
                             className={fieldState.error ? 'error' : ''}
-                            onChange={(date) => field.onChange(date)}
-                            selected={field.value}
+                            onChange={(date) => {
+                                field.onChange(date)
+                                // console.log(date);
+                            }}
+                            selected={field.value ? new Date(field.value) : field.value}
                         />
                         {fieldState.error ? <p className="error-message">{fieldState.error?.message}</p> : ''}
                     </>

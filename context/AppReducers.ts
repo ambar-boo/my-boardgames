@@ -11,6 +11,13 @@ export const gamesReducer = (state:GameInfo[], action: any) => {
         ...state,
         action.game
       ]
+    case 'ADD_STATISTICS_GAME':
+      return state.map(game => {
+        if (game.alias === action.info.alias) {
+          game.statistics = action.info.statistics.dates;
+          return game;
+        }
+      })
     case 'REMOVE_GAME':
       return state.filter(game => game.alias !== action.alias)
     default:

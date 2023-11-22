@@ -30,7 +30,9 @@ const InputFields: React.FunctionComponent<InputFieldsTypes> = (
                             placeholder={placeholder}
                             value={field.value}
                             className={fieldState.error ? 'error' : ''}
-                            onChange={(value) => field.onChange(value)}
+                            onChange={(value) => {
+                                field.onChange(type === 'number' ? +value.target.value : value.target.value)
+                            }}
                         />
                         {fieldState.error ? <p className="error-message">{fieldState.error?.message}</p> : ''}
                     </>

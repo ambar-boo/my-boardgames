@@ -1,0 +1,127 @@
+.wrapper {
+  max-width: var(--max-width);
+  padding: 0 var(--row-padding);
+  margin: 0 auto 40px auto;
+  width: 100%;
+}
+
+.main_page__image {
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--on-surface-bg_rgb), 0.2);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.search {
+  position: relative;
+
+  &__games {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgba(var(--primary_rgb), 0.5);
+    border-top: none;
+    border-radius: 3px;
+    z-index: 1;
+    background: var(--surface-bg-lightest);
+    max-height: 300px;
+    overflow: auto;
+    display: none;
+
+    &___open {
+      display: block;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      background: rgba(var(--primary_rgb), 0.1);
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(var(--primary_rgb), 0.1);
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(var(--primary_rgb), 0.2);
+      border-radius: 0;
+    }
+
+    &_row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &_photo {
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(var(--primary_rgb), 0.2);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          display: block;
+        }
+
+        &___nophoto {
+          background: url("../../public/meeple-stub-icon.svg") center center no-repeat;
+          background-size: contain;
+
+          img {
+            display: none;
+          }
+        }
+      }
+
+      &_title {
+        padding-left: 10px;
+      }
+
+      &_info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      &_btn {
+        color: var(--primary);
+        background: url("../../public/plus-menu-icon.svg") center left no-repeat;
+        padding-left: 16px;
+
+        &___is_added {
+          background: none;
+          padding-left: 0;
+          cursor: inherit;
+        }
+      }
+    }
+  }
+}

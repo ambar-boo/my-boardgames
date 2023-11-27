@@ -31,9 +31,6 @@ export default function GameModal({game, setShowModal} :GameModalProps) {
 
     const methods = useForm();
     const onSubmit: SubmitHandler<GameStatistics> = (data, e: BaseSyntheticEvent<object, any, any> | undefined) => {
-        console.log(data);
-
-        console.log(typeof data.dates[0].play_game_date);
         if (data.dates.length > 0) {
             dispatch({
                 type: 'ADD_STATISTICS_GAME',

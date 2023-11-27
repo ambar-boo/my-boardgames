@@ -1,6 +1,7 @@
 import {GameInfo} from "@/types/gamesType";
 
 export const gamesReducer = (state:GameInfo[], action: any) => {
+  console.log('myGames', state, action);
   switch (action.type) {
     case 'INITIAL_GAME':
       return [
@@ -15,8 +16,8 @@ export const gamesReducer = (state:GameInfo[], action: any) => {
       return state.map(game => {
         if (game.alias === action.info.alias) {
           game.statistics = action.info.statistics.dates;
-          return game;
         }
+        return game;
       })
     case 'REMOVE_GAME':
       return state.filter(game => game.alias !== action.alias)

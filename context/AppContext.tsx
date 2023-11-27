@@ -28,6 +28,7 @@ const AppProvider = ({ children }: any) => {
   }, []);
 
   useEffect(() => {
+    console.log('myGames', myGames);
     localStorage.setItem("localMyGames", JSON.stringify(myGames));
   }, [myGames]);
 

@@ -1,7 +1,6 @@
 import {GameInfo} from "@/types/gamesType";
 
 export const gamesReducer = (state:GameInfo[], action: any) => {
-  console.log('myGames', state, action);
   switch (action.type) {
     case 'INITIAL_GAME':
       return [

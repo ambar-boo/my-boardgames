@@ -11,19 +11,23 @@ const ButtonAddGame = ({game}: GameProps) => {
     const { myGames, dispatch } = useContext(AppContext);
     const isGameAdded = myGames.find(myGame => myGame.alias === game.alias);
 
+    function addGame(game: GameInfo) {
+        const newGame = new GameInfo(game.title, game.alias, game.photoUrl);
+        if (!isGameAdded) {
+            dispatch({
+                type: 'ADD_GAME',
+                game: newGame.setGame()
+            })
+        }
+
+    }
+
     return (
         <Button
             type="button"
             text={`${!isGameAdded ? 'Добавить игру' : 'Добавлена'}`}
             classBtn={`${!isGameAdded ? styles.search__games_row_btn : styles.search__games_row_btn___is_added}`}
-            onClick={() => {
-                if (!isGameAdded) {
-                    dispatch({
-                        type: 'ADD_GAME',
-                        game
-                    })
-                }
-            }}
+            onClick={() => addGame(game)}
         />
     )
 }

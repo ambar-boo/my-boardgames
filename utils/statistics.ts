@@ -1,33 +1,29 @@
 import Highcharts from "highcharts";
-import {GameInfo} from '@/types/gamesType';
+import {GalleryStatistics, GameInfo} from '@/types/gamesType';
 
 type dataStatisticsType = {
     name: string,
     y: number,
 }
 
-export function setAllGamesStatisticsOptions(myGames: GameInfo[]): Highcharts.Options {
-    let allGamesCount: number = 0;
-    myGames.forEach((game) => {
-        if(game.statistics?.length > 0) {
-            game.statistics.forEach((statistic) => {
-                allGamesCount += +statistic.play_game_count;
-            })
-        }
-    });
+export function setAllGamesStatisticsOptions(myGames: GameInfo[]) {
+    const allGamesCount = myGames.flatMap(game => game.statistics)
+        .reduce((res, current) => {
+            return res + (current?.play_game_count ? +(current.play_game_count) : 0);
+        }, 0);
 
     const dataStatistics: dataStatisticsType[] = [];
     myGames.forEach((game) => {
-        if(game.statistics?.length > 0) {
+        if(game.statistics && game.statistics.length > 0) {
             let countGame: number = 0;
             game.statistics.forEach((statistic) => {
-                countGame += +statistic.play_game_count;
+                countGame += statistic.play_game_count ? +statistic.play_game_count : 0;
             })
             dataStatistics.push({ name: game.title, y: Math.round(countGame*100/allGamesCount) })
         }
     });
 
-    const options: any = {
+    return {
         chart: {
             type: 'pie'
         },
@@ -71,6 +67,4 @@ export function setAllGamesStatisticsOptions(myGames: GameInfo[]): Highcharts.Op
             }
         ]
     };
-
-    return options;
 }

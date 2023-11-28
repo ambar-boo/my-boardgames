@@ -16,6 +16,7 @@ export default function Statistics(props: HighchartsReact.Props) {
 
     return (
         <div className={styles.wrapper}>
+            <h2 className={styles.title}>Общая статистика по играм</h2>
             <HighchartsReact
                 highcharts={Highcharts}
                 options={setAllGamesStatisticsOptions(myGames)}

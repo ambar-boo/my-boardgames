@@ -6,6 +6,7 @@ interface NotifyProps {
 }
 
 const showNotification = ({ type, message }: NotifyProps) => {
+    // todo: обрабатывать тип error
     const containerNotification = document.createElement('div');
     document.getElementById('notifications')?.appendChild(containerNotification);
     const rootNotification = createRoot(containerNotification!);

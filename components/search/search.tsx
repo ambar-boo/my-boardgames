@@ -4,22 +4,21 @@ import Button from "../ui/button";
 import {debounce} from "@/utils/debounce";
 import TeseraApi from "../../api/tesera";
 import { AppContext } from "@/context/AppContext";
-import {GameProps, GameInfo} from '@/types/gamesType'
-import styles from './search.module.scss'
+import {GameProps, GameInfo} from '@/types/gamesType';
+import styles from './search.module.scss';
+import showNotification from "@/components/notification/notification";
 
 const ButtonAddGame = ({game}: GameProps) => {
     const { myGames, dispatch } = useContext(AppContext);
     const isGameAdded = myGames.find(myGame => myGame.alias === game.alias);
 
     function addGame(game: GameInfo) {
-        const newGame = new GameInfo(game.title, game.alias, game.photoUrl);
         if (!isGameAdded) {
             dispatch({
                 type: 'ADD_GAME',
-                game: newGame.setGame()
+                game
             })
         }
-
     }
 
     return (
@@ -60,6 +59,10 @@ export default function Search() {
                 setGames(searchList);
             } else {
                 setGames([]);
+                showNotification({
+                    type: 'error',
+                    message: 'Ошибка при поиске игры'
+                });
             }
         } else {
             setGames([]);

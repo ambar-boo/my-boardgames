@@ -21,7 +21,10 @@ const MemoListItem = memo(({game} :GameProps) => {
 
     return game?.alias && (
         <div className={styles.list__game}>
-            <Link className={styles.list__game_row} href={`/games/${encodeURIComponent(game.alias)}`}>
+            <Link className={styles.list__game_row}
+                  href='/games/[alias]'
+                  as={`/games/${encodeURIComponent(game.alias)}`}
+            >
                 <div className={`${styles.list__game_photo} ${!game.photoUrl ? styles.list__game_photo___nophoto : ''}`}>
                     <img src={game.photoUrl} alt=""/>
                     <div className={styles.list__game_action}

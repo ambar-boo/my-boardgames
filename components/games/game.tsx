@@ -16,7 +16,7 @@ export default function GameCard() {
     useEffect(() => {
         const getGameByAlias = async (): Promise<void> => {
             if(router.isReady && router.query?.alias) {
-                const gameResponse = await TeseraApi.getGameByAlias(`${router.query?.alias}`);
+                const gameResponse = await TeseraApi.getGameByAlias(`${router.query.alias}`);
                 if(gameResponse) {
                     const gallery = [];
                     if(gameResponse.game.photoUrl) {

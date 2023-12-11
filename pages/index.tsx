@@ -7,7 +7,7 @@ import styles from "@/components/search/search.module.scss";
 const Index: NextPageWithLayout = () => {
   return (
       <>
-          <div className={styles.wrapper}>
+          <div className={`${styles.wrapper} ${styles.wrapper_image}`}>
               <div className={styles.main_page__image}>
                   <img src="./main-page-fon.jpg" alt=""/>
               </div>

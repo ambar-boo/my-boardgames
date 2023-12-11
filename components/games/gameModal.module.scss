@@ -23,8 +23,13 @@
 }
 
 .col {
-  flex: 1 0 50%;
+  flex: 1 0 100%;
+  max-width: 50%;
   padding: 0 8px;
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+  }
 }
 
 .btn_add {

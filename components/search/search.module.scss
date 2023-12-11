@@ -3,6 +3,12 @@
   padding: 0 var(--row-padding);
   margin: 0 auto 40px auto;
   width: 100%;
+
+  &_image {
+    @media (max-width: 560px) {
+      display: none;
+    }
+  }
 }
 
 .main_page__image {

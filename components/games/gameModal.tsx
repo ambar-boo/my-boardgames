@@ -23,7 +23,7 @@ export default function GameModal({game, setShowModal} :GameModalProps) {
     const { myGames, dispatch } = useContext(AppContext);
     const { control, handleSubmit, register } = useForm<any>({
         defaultValues: {
-            dates: game?.statistics?.length > 0 ? game.statistics.length : [{ play_game_date: new Date(), play_game_count: null }]
+            dates: game?.statistics?.length > 0 ? game.statistics : [{ play_game_date: new Date(), play_game_count: null }]
         },
     });
     const { fields, append, remove } = useFieldArray({

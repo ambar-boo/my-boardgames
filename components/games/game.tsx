@@ -15,7 +15,6 @@ interface gameProps {
 
 export default function GameCard({alias}: gameProps) {
     const [gameInfo, setGame] = useState<fullGamesCard|null>(null);
-    const swiperElRef = useRef(null);
 
     useEffect(() => {
         const getGameByAlias = async (): Promise<void> => {
@@ -45,7 +44,6 @@ export default function GameCard({alias}: gameProps) {
                                     {gameInfo?.gallery?.length > 1 ?
                                         <div className={styles.card__slider}>
                                             <Swiper
-                                                ref={swiperElRef}
                                                 navigation
                                                 virtual
                                                 autoHeight={true}

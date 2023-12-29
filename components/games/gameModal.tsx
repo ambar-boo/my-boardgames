@@ -8,6 +8,8 @@ import GameModalDate from "../games/gameModalDate";
 import Button from "../ui/button";
 import {AppContext} from "@/context/AppContext";
 import showNotification from "@/components/notification/notification";
+import GameCard from "@/components/games/game";
+import styles from './gameModal.module.scss';
 
 type GameModalProps = {
     game: GameInfo,
@@ -21,7 +23,7 @@ export default function GameModal({game, setShowModal} :GameModalProps) {
     const { myGames, dispatch } = useContext(AppContext);
     const { control, handleSubmit, register } = useForm<any>({
         defaultValues: {
-            dates: game.statistics.length > 0 ? game.statistics.length : [{ play_game_date: new Date(), play_game_count: null }]
+            dates: game?.statistics?.length > 0 ? game.statistics.length : [{ play_game_date: new Date(), play_game_count: null }]
         },
     });
     const { fields, append, remove } = useFieldArray({
@@ -56,13 +58,15 @@ export default function GameModal({game, setShowModal} :GameModalProps) {
     }
 
     return (
-        <Modal title={game?.title ? `Добавьте даты, когда играли в ${game.title}` : ''}
+        <Modal title={game?.title ? `${game.title}` : ''}
                onClose={() => setShowModal({
                    id: null,
                    isOpen: false
                })}>
+            <GameCard alias={game.alias} />
             <FormProvider {...methods}>
-                <form onSubmit={handleSubmit(onSubmit, onError)}>
+                <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)}>
+                    <div className={styles.form_title}>Добавьте даты, когда играли в {game.title}</div>
                     <GameModalDate
                         fields={fields}
                         append={append}

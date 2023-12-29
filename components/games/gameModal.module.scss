@@ -36,3 +36,15 @@
   margin-bottom: 16px;
   text-align: right;
 }
+
+.form {
+  background: var(--primary-surface);
+  padding: 20px;
+
+  &_title {
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+}

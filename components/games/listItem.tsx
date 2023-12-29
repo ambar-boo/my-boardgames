@@ -1,9 +1,7 @@
 import React, { useState, useContext, memo } from 'react';
 import { AppContext } from "@/context/AppContext";
-import Link from 'next/link';
 import styles from './list.module.scss';
 import Tooltip from "../ui/tooltip";
-import Button from "../ui/button";
 import GameModal from "../games/gameModal";
 import {GameProps} from '@/types/gamesType';
 
@@ -21,10 +19,14 @@ const MemoListItem = memo(({game} :GameProps) => {
 
     return game?.alias && (
         <div className={styles.list__game}>
-            <Link className={styles.list__game_row}
-                  href='/games/[alias]'
-                  as={`/games/${encodeURIComponent(game.alias)}`}
-            >
+            <div className={styles.list__game_item}
+                onClick={(e) => {
+                    e.preventDefault();
+                    setShowModal({
+                        id: `addStatistic${game.alias}`,
+                        isOpen: true
+                    })
+                }}>
                 <div className={`${styles.list__game_photo} ${!game.photoUrl ? styles.list__game_photo___nophoto : ''}`}>
                     <img src={game.photoUrl} alt=""/>
                     <div className={styles.list__game_action}
@@ -44,26 +46,26 @@ const MemoListItem = memo(({game} :GameProps) => {
                 </div>
                 <div className={styles.list__game_info}>
                     <div className={styles.list__game_title}>{game.title}</div>
-                    <div className={styles.list__game_button_add}>
-                        <Button
-                            type="button"
-                            text="Отметить даты игры"
-                            classBtn=""
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setShowModal({
-                                    id: `addStatistic${game.alias}`,
-                                    isOpen: true
-                                })
-                            }}
-                        />
-                        <Tooltip
-                            title="?"
-                            text="Для сбора статистики"
-                        />
-                    </div>
+                    {/*<div className={styles.list__game_button_add}>*/}
+                    {/*    <Button*/}
+                    {/*        type="button"*/}
+                    {/*        text="Отметить даты игры"*/}
+                    {/*        classBtn=""*/}
+                    {/*        onClick={(e) => {*/}
+                    {/*            e.preventDefault();*/}
+                    {/*            setShowModal({*/}
+                    {/*                id: `addStatistic${game.alias}`,*/}
+                    {/*                isOpen: true*/}
+                    {/*            })*/}
+                    {/*        }}*/}
+                    {/*    />*/}
+                    {/*    <Tooltip*/}
+                    {/*        title="?"*/}
+                    {/*        text="Для сбора статистики"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                 </div>
-            </Link>
+            </div>
             {modal.isOpen && modal.id === `addStatistic${game.alias}` &&
                 <GameModal
                     game={game}

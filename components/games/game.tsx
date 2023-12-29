@@ -1,56 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './game.module.scss';
-import {useRouter} from "next/router";
 import TeseraApi from "../../api/tesera";
 import Loader from "../ui/loader";
-import {gamesCard} from "@/types/gamesType";
+import {fullGamesCard} from "@/types/gamesType";
+import GameInfoFromTeseraDTO from "@/dto/GameInfoFromTeseraDTO";
 import { register } from 'swiper/element/bundle';
 
 register();
 
-export default function GameCard() {
-    const router = useRouter();
-    const [gameInfo, setGame] = useState<gamesCard|null>(null);
+interface gameProps {
+    alias: string
+}
+
+export default function GameCard({alias}: gameProps) {
+    const [gameInfo, setGame] = useState<fullGamesCard|null>(null);
     const swiperElRef = useRef(null);
 
     useEffect(() => {
         const getGameByAlias = async (): Promise<void> => {
-            if(router.isReady && router.query?.alias) {
-                const gameResponse = await TeseraApi.getGameByAlias(`${router.query.alias}`);
+            if(alias) {
+                const gameResponse = await TeseraApi.getGameByAlias(`${alias}`);
                 if(gameResponse) {
-                    const gallery = [];
-                    if(gameResponse.game.photoUrl) {
-                        gallery.push({ photoUrl: gameResponse.game.photoUrl});
-                    }
-                    if(gameResponse.photos && gameResponse.photos.length > 0) {
-                        gameResponse.photos.forEach((photo: {
-                            photoUrl: string,
-                            title?: string
-                        }) => {
-                            gallery.push({
-                                photoUrl: photo.photoUrl,
-                                title: photo.title
-                            });
-                        })
-                    }
-                    gameResponse.gallery = gallery;
-                    setGame(gameResponse);
+                    setGame(new GameInfoFromTeseraDTO(gameResponse).setDate());
                 }
             }
         }
 
         getGameByAlias();
-    }, [router.isReady]);
+    }, []);
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.card}>
-                <div className={styles.card__wrapper}>
-                    {
-                        gameInfo?.game ?
-                            <div className={styles.card__main}>
+        <div className={styles.card}>
+            <div className={styles.card__wrapper}>
+                {
+                    gameInfo ?
+                        <div className={styles.card__main}>
+                            { gameInfo?.gallery && gameInfo?.gallery?.length > 0 ?
                                 <div className={styles.card__gallery}>
-                                    { gameInfo?.gallery && gameInfo?.gallery?.length > 0 ?
+                                    {gameInfo?.gallery?.length > 1 ?
                                         <div className={styles.card__slider}>
                                             <swiper-container
                                                 ref={swiperElRef}
@@ -62,7 +49,8 @@ export default function GameCard() {
                                                 {
                                                     gameInfo.gallery.map((item, index) => {
                                                         return <swiper-slide key={index}>
-                                                            <div className={styles.card__slider_photo}><img src={item.photoUrl} alt=""/></div>
+                                                            <div className={styles.card__slider_photo}><img
+                                                                src={item.photoUrl} alt=""/></div>
                                                             {item.title ? <div className={styles.card__slider_title}>
                                                                 {item.title}
                                                             </div> : ''}
@@ -70,24 +58,24 @@ export default function GameCard() {
                                                     })
                                                 }
                                             </swiper-container>
-                                            <button type="button" id="my-prev-button" className={styles.card__slider_prev} />
-                                            <button type="button" id="my-next-button" className={styles.card__slider_next} />
+                                            <button type="button" id="my-prev-button" className={styles.card__slider_prev}/>
+                                            <button type="button" id="my-next-button" className={styles.card__slider_next}/>
                                         </div> :
-                                        <img src={gameInfo.game.photoUrl} alt=""/>
+                                        <img src={gameInfo.gallery[0].photoUrl} alt=""/>
                                     }
-                                </div>
-                                <div className={styles.card__info}>
-                                    <h1 className={styles.card__info_title}>
-                                        {gameInfo.game.title}
-                                    </h1>
-                                    <div className={styles.card__info_description} dangerouslySetInnerHTML={{ __html:  typeof gameInfo.game.description === 'string' ?
-                                            gameInfo.game.description : '' }} />
-                                </div>
-                            </div> : <div>
-                            <Loader />
+                                </div> : ''
+                            }
+                            <div className={styles.card__info}>
+                                <div className={styles.card__info_description} dangerouslySetInnerHTML={{
+                                    __html: typeof gameInfo.description === 'string' ?
+                                        gameInfo.description : 'Описание игры отсутствует'
+                                }}/>
+                                <a className={styles.card__info_link} href={gameInfo.teseraUrl} target="_blank">Читать больше на tesera</a>
+                            </div>
+                        </div> : <div>
+                            <Loader/>
                         </div>
-                    }
-                </div>
+                }
             </div>
         </div>
     )

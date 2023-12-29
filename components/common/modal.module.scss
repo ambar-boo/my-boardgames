@@ -3,6 +3,8 @@
   height: 100%;
   width: 100%;
   border-radius: 3px;
+  overflow: auto;
+  max-height: 90vh;
 
   &__overlay {
     position: fixed;
@@ -46,7 +48,7 @@
 
   &__wrapper {
     width: 100%;
-    max-width: 500px;
+    max-width: clamp(320px, 80vw, 1300px);
     padding: 10px;
   }
 }

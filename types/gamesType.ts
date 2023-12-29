@@ -4,6 +4,7 @@ export class GameInfo {
     photoUrl?: string = '';
     description?: string | TrustedHTML = '';
     statistics: GalleryStatistics[] = [];
+    teseraUrl?: string
 }
 
 export type GameProps = {
@@ -23,10 +24,12 @@ export type GalleryStatistics = {
 export type teseraGamesCard = {
     game: GameInfo,
     photos?: GalleryItem[],
-    gallery?: GalleryItem[]
+    gallery?: GalleryItem[],
 }
 
-export type gamesCard = {
-    game: GameInfo,
-    gallery?: GalleryItem[]
+export type fullGamesCard = {
+    description: string | TrustedHTML,
+    teseraUrl: string,
+    photoUrl?: string,
+    gallery?: GalleryItem[],
 }

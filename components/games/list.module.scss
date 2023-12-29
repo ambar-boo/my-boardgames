@@ -30,7 +30,11 @@
       max-width: 100%;
     }
 
-    &_row {
+    &_item {
+      cursor: pointer;
+    }
+
+    &_item {
       display: block;
 
       &:hover {

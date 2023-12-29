@@ -1,12 +1,6 @@
-.wrapper {
-  max-width: var(--max-width);
-  padding: 0 var(--row-padding) 40px var(--row-padding);
-  margin: 0 auto;
-  width: 100%;
-}
-
 .card {
   position: relative;
+  margin-bottom: 20px;
 
   &__wrapper {
     width: 100%;
@@ -14,6 +8,10 @@
 
   &__gallery {
     width: 410px;
+
+    img {
+      max-width: 100%;
+    }
   }
 
   &__info {
@@ -28,6 +26,18 @@
       margin-top: 10px;
       font-size: 14px;
       line-height: 20px;
+    }
+
+    &_link {
+      margin-top: 10px;
+      display: inline-block;
+      font-size: 14px;
+      line-height: 20px;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 

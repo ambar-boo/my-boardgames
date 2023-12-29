@@ -4,9 +4,10 @@ import TeseraApi from "../../api/tesera";
 import Loader from "../ui/loader";
 import {fullGamesCard} from "@/types/gamesType";
 import GameInfoFromTeseraDTO from "@/dto/GameInfoFromTeseraDTO";
-import { register } from 'swiper/element/bundle';
-
-register();
+import SwiperCore, { Virtual, Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+SwiperCore.use([Navigation, Pagination, Virtual]);
 
 interface gameProps {
     alias: string
@@ -39,27 +40,23 @@ export default function GameCard({alias}: gameProps) {
                                 <div className={styles.card__gallery}>
                                     {gameInfo?.gallery?.length > 1 ?
                                         <div className={styles.card__slider}>
-                                            <swiper-container
-                                                ref={swiperElRef}
-                                                slides-per-view="1"
-                                                navigation={true}
-                                                navigation-prev-el="#my-prev-button"
-                                                navigation-next-el="#my-next-button"
+                                            <Swiper
+                                                navigation
+                                                virtual
+                                                autoHeight={true}
                                             >
                                                 {
                                                     gameInfo.gallery.map((item, index) => {
-                                                        return <swiper-slide key={index}>
+                                                        return <SwiperSlide key={index} virtualIndex={index}>
                                                             <div className={styles.card__slider_photo}><img
                                                                 src={item.photoUrl} alt=""/></div>
                                                             {item.title ? <div className={styles.card__slider_title}>
                                                                 {item.title}
                                                             </div> : ''}
-                                                        </swiper-slide>
+                                                        </SwiperSlide>
                                                     })
                                                 }
-                                            </swiper-container>
-                                            <button type="button" id="my-prev-button" className={styles.card__slider_prev}/>
-                                            <button type="button" id="my-next-button" className={styles.card__slider_next}/>
+                                            </Swiper>
                                         </div> :
                                         <img src={gameInfo.gallery[0].photoUrl} alt=""/>
                                     }

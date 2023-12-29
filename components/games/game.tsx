@@ -22,9 +22,6 @@ export default function GameCard({alias}: gameProps) {
                 const gameResponse = await TeseraApi.getGameByAlias(`${alias}`);
                 if(gameResponse) {
                     setGame(new GameInfoFromTeseraDTO(gameResponse).setDate());
-                    setTimeout(() => {
-                        window.dispatchEvent(new Event('resize'));
-                    }, 10)
                 }
             }
         }
@@ -45,7 +42,6 @@ export default function GameCard({alias}: gameProps) {
                                         <div className={styles.card__slider}>
                                             <Swiper
                                                 navigation
-                                                virtual
                                                 autoHeight={true}
                                             >
                                                 {

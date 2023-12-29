@@ -23,11 +23,15 @@ export default function GameCard({alias}: gameProps) {
                 const gameResponse = await TeseraApi.getGameByAlias(`${alias}`);
                 if(gameResponse) {
                     setGame(new GameInfoFromTeseraDTO(gameResponse).setDate());
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 10)
                 }
             }
         }
 
         getGameByAlias();
+
     }, []);
 
     return (
@@ -41,6 +45,7 @@ export default function GameCard({alias}: gameProps) {
                                     {gameInfo?.gallery?.length > 1 ?
                                         <div className={styles.card__slider}>
                                             <Swiper
+                                                ref={swiperElRef}
                                                 navigation
                                                 virtual
                                                 autoHeight={true}
